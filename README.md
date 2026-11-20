@@ -32,21 +32,26 @@
 
 
 ## 3. Покриваючий запит
-```db.tracks.find({
+
+```
+db.tracks.find({
   track_genre: "pop",
   popularity: { $gte: 70 }
-});```
+});
+```
 Запит не є покриваючим
 
 Щоб запит був покриваючим, треба з проекції прибрати _id і додати тільки поля (необовʼязково всі), по яких було створено індекс. А в загальному випадку ще індексоване поле не може бути масивом для покриваючого запиту
-```db.tracks.find(
-        {
-            track_genre: "pop",
-            popularity: { $gte: 70 }
-        },
-        {
-            _id: 0,
-            track_genre: 1, 
-            popularity: 1,
-        }
-    )```
+```
+db.tracks.find(
+    {
+        track_genre: "pop",
+        popularity: { $gte: 70 }
+    },
+    {
+        _id: 0,
+        track_genre: 1, 
+        popularity: 1,
+    }
+)
+```
